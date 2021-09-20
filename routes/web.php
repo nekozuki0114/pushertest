@@ -17,14 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => '/chat'], function () {
-    Route::get('/index', function () {
+Route::group(['prefix' => '/pusher'], function () {
+    Route::get('/get', function () {
         return view('pusher-index');
     });
 
     // 追加
-    Route::get('/test', function () {
-        event(new App\Events\MyEvent('hello world'));
-        return ['message' => 'send to message : hello world'];
-    });
+    Route::get('/send',[App\Http\Controllers\testController::class,'send']);
 });
